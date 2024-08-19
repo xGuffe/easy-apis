@@ -1,0 +1,16 @@
+{
+    "version": 2,
+    "builds": [
+      {
+        "src": "poeninja/api/index.js",
+        "use": "@vercel/node"
+      }
+    ],
+    "routes": [
+      {
+        "src": "/poeninja/(.*)",
+        "dest": "poeninja/api/index.js"
+      }
+    ]
+  }
+  

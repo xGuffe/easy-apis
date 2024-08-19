@@ -46,7 +46,7 @@ async function fetch_poe_users() {
             return JSON.parse(JSON.stringify(message.tag1.tag5))
         })
         .then(buffer_message => {
-            chunk_arrays = []
+            let chunk_arrays = []
             for (let chunk of buffer_message) {
                 chunk = chunk.data
                 const decoder = new TextDecoder('utf-8')
@@ -68,8 +68,8 @@ async function fetch_poe_users() {
             return usablelines
         })
         .then(useablelines => {
-            cleaned_lines = []
-            for (lines of useablelines) {
+            let cleaned_lines = []
+            for (let lines of useablelines) {
                 cleaned_lines.push(lines.map(line => 
                     line.replace(/[\x18\x17\x16\x15\x14\x13\x12\x11\x10\x07\x06\x05\x04\x03\x1C\x1A\x0F\x0E\x0B\x00\t\r\f\b]/g, '')
                 ).slice(1))
@@ -78,7 +78,7 @@ async function fetch_poe_users() {
         })
         .then(final_lines => {
             let combined = final_lines[0].map((value, idx) => [value, final_lines[1][idx]])
-            mapped = combined.map((value) => {
+            let mapped = combined.map((value) => {
                 return { [value[1]]: value[0] }
             })
             .reduce((user, account) => {
